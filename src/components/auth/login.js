@@ -69,14 +69,12 @@ export function Login() {
           const response = await loginUser(formfieldsdata);
           console.log('success', response);
         } 
-    catch (err) 
+    catch (error) 
         {
-          const response = err.response;
+          const response = error?.response;
           console.log('error', response);
-          if (response){
-            if (err.status === 401){
-              setinvaliDetails(response.data.message);
-            }
+          if (response && error?.status === 401){
+              setinvaliDetails(response?.data?.message);
           }
          }
     
