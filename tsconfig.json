@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/page.js", "src/components/dashboard/overview/total-profit.js", "src/app/dashboard/page.js", "src/components/dashboard/overview/sales.js", "src/app/dashboard/settings/page.js", "src/components/dashboard/settings/notifications.js", "src/app/dashboard/integrations/page.js", "src/app/dashboard/customers/page.js", "src/app/dashboard/layout.js", "src/app/dashboard/layout.js", "src/app/dashboard/account/page.js", "src/app/errors/not-found/page.js", "src/app/not-found.js", "src/app/layout.js", "src/components/dashboard/layout/side-nav.js"],
+  "exclude": ["node_modules"]
+}
