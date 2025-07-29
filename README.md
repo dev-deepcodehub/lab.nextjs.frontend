@@ -1,4 +1,4 @@
-## [Devias Kit - React](https://material-kit-react.devias.io/)
+## [DCH - React](https://deepcodehub.com)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
