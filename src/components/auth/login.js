@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import RouterLink from 'next/link';
+import { useRouter } from 'next/navigation';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -20,6 +21,7 @@ import { loginUser } from '@/lib/authapi/api';
 export function Login() {
 
   // const { loginAuth } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false); //show hide the password
   // const [isPending, setIsPending] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' }); 
@@ -67,7 +69,11 @@ export function Login() {
             password: formData.password,
           };
           const response = await loginUser(formfieldsdata);
-          console.log('success', response);
+          if (response) {
+            router.push('/dashboard');
+          }
+          // console.log('success', response);
+
         } 
     catch (error) 
         {
