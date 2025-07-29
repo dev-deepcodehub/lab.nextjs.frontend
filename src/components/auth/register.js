@@ -82,9 +82,8 @@ export function Register() {
           //   email: formData.email,
           //   password: formData.password,
           // };
-          const response = await registerUser(formData) // use your API function          
+          await registerUser(formData) // use your API function          
           setSuccess('User registered successfully!');
-          console.log('success', response);
           setFormData({ name: '', email: '', password: '' });
           setErrors({});
           
@@ -93,11 +92,9 @@ export function Register() {
           setSuccess('');
           const response = error?.response; 
           console.error('Registration failed', response);
-          // if (response) {
-          //   if (response.status === 422) {
-          //     setErrors({ email: response.data.message });
-          //   }
-          // }
+          if (response && response?.status === 422) {
+            setErrors({ email: response?.data.message });
+          }
         }
   };
 
