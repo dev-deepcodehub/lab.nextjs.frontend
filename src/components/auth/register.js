@@ -96,7 +96,7 @@ export function Register() {
             setErrors({ email: response?.data.message });
           }
         }
-  };
+  }; 
 
     return (
     <Stack spacing={3}>
