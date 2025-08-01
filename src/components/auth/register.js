@@ -24,10 +24,10 @@ export function Register() {
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState('');
   const [formData, setFormData] = useState({
-    first_name: 'test1',
-    last_name: 'user', 
-    email: 'test1@gmail.com',
-    password: '111111',
+    first_name: '',
+    last_name: '', 
+    email: '',
+    password: '',
   });
 
   //get all field data ot update on change
@@ -82,9 +82,10 @@ export function Register() {
           //   email: formData.email,
           //   password: formData.password,
           // };
-          await registerUser(formData) // use your API function          
+          const successdata = await registerUser(formData) // use your API function 
+          console.log('success', successdata);         
           setSuccess('User registered successfully!');
-          setFormData({ name: '', email: '', password: '' });
+          setFormData({ first_name: '', last_name: '', email: '', password: '' });
           setErrors({});
           
         } 
