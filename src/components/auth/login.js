@@ -68,7 +68,8 @@ export function Login() {
             password: formData.password,
           };
 
-          await loginUser(formfieldsdata);
+          const res = await loginUser(formfieldsdata);
+          console.log('logindata', res);
           await refreshUser();
           router.push('/dashboard');
 
