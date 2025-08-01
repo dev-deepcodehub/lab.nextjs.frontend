@@ -2,6 +2,7 @@ import React from 'react';
 import '@/styles/global.css';
 import '@/styles/sn.scss';
 import AppContent from './app-content';
+import { AuthProvider } from '@/context/user-context'
 
 import { LocalizationProvider } from '@/components/core/localization-provider';
 import { ThemeProvider } from '@/components/core/theme-provider/theme-provider';
@@ -17,9 +18,9 @@ export default function Layout({ children }) {
       <body>
         <LocalizationProvider>
           <ThemeProvider>
-              <AppContent>
-                {children}
-              </AppContent>
+              <AuthProvider>
+                <AppContent>{children}</AppContent>
+              </AuthProvider>
             </ThemeProvider>
         </LocalizationProvider>
       </body>

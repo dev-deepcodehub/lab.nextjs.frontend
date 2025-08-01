@@ -19,5 +19,11 @@ export const registerUser = async (formfieldsdata) => {
     return response.data;
 };
 
+export const logOut = async () => {
+  const response = await api.post('/logout');
+  return response.data;
+};
+
+
 // Export the Axios instance too (optional, if needed elsewhere)
 export default api;
