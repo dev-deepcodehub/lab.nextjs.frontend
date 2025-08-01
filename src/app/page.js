@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';  
 import RouterLink from 'next/link';
 import Link from '@mui/material/Link';
@@ -8,7 +7,7 @@ import { useAuth } from '@/context/user-context'
 import { logOut } from '@/lib/authapi/api';
 
 export default function Page() {
-    const { user, loading } = useAuth();
+    const { user } = useAuth();
     const router = useRouter();
 
     const handleLogout = async () => {
@@ -19,10 +18,6 @@ export default function Page() {
         console.log('Logout failed:', error);
       }
     };
-
-    useEffect(() => {
-      console.log('userdata', user);
-    }, [loading, user]);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-900">

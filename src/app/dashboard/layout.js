@@ -1,11 +1,20 @@
+'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';  
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { MainNav } from '@/components/dashboard/layout/main-nav'; // header
 import { SideNav } from '@/components/dashboard/layout/side-nav'; // sidebar
+import { useAuth } from '@/context/user-context'
+
 
 export default function Layout({ children }) {
+  const { user } = useAuth();
+  const router = useRouter();
+  
+  if (!user) return router.push('/login');
+  
   return (
     <>
       <GlobalStyles 
@@ -43,6 +52,7 @@ export default function Layout({ children }) {
 
           <main>
             <Container maxWidth="xl" sx={{ py: '64px' }}>
+              {/* <AuthProvider>{children}</AuthProvider> */}
               {children}
             </Container>
           </main>

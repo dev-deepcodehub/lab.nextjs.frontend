@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 export default function Initialyloader({ onFinish }) {
-  const fullText = 'Speedy Ninja';
+  const fullText = 'Digi Lab Pro';
   const [text, setText] = useState('');
   const [index, setIndex] = useState(0);
   const [isZooming, setIsZooming] = useState(false);
@@ -18,7 +18,7 @@ export default function Initialyloader({ onFinish }) {
       const timeout = setTimeout(() => {
         setText((prev) => prev + fullText[index]);
         setIndex(index + 1);
-      }, 150);
+      }, 100); //text time
       return () => clearTimeout(timeout);
     } else {
       // After typing is done, start zoom after 1s
