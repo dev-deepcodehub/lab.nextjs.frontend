@@ -7,7 +7,7 @@ export async function GET() {
   // const cookieHeader = cookies().toString();
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`, {
-    method: 'POST',
+    method: 'GET',
     headers: {
       Cookie: cookieHeader,
     },
