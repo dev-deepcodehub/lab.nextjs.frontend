@@ -1,9 +1,17 @@
 import { cookies } from 'next/headers';
 console.log('api called');
 export async function GET() {
-  
+
   const cookieStore = cookies(); // await required
-  const cookieHeader = cookieStore.toString();
+
+  const cookieHeader = cookieStore.getAll()
+    .map(c => `${c.name}=${c.value}`)
+    .join('; ');
+
+  console.log('🍪 Forwarding cookies to backend:', cookieHeader);
+
+
+  // const cookieHeader = cookieStore.toString();
   // const cookieHeader = cookies().toString();
    console.log('cookieHeader:', cookieHeader); // Debug this
    
