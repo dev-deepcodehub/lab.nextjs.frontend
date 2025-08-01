@@ -41,13 +41,13 @@
     },
     cache: 'no-store',
   });
-
-  if (!res.ok) {
-    return new Response(JSON.stringify({ user: null }), { status: 401 });
-  }
-
   const data = await res.json();
-  console.log('✅ Laravel Response:', data);
+    console.log('✅ Laravel response:', data);
 
-  return new Response(JSON.stringify({ user: data.CurrentUserData }), { status: 200 });
+    return new Response(JSON.stringify({ user: data.CurrentUserData }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 }

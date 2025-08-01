@@ -11,7 +11,11 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       console.log('⚡ fetchUser is being called');
-      const res = await fetch('/api/currentuser', { credentials: 'include' });
+      // const res = await fetch('/api/currentuser', { credentials: 'include' });
+      const res = await fetch('/api/currentuser', {
+      method: 'GET',
+      credentials: 'include', // 👈 MAKE SURE THIS EXISTS
+    });
       const data = await res.json();
       console.log('user data fetched initially', data)
       setUser(data.user || null);
