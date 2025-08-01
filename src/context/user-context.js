@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await fetch('/api/currentuser', { credentials: 'include' });
       const data = await res.json();
-      // console.log('user data fetched', data)
+      console.log('user data fetched', data)
       setUser(data.user || null);
     } catch (error) {
       setUser(null);
