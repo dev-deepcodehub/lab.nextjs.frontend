@@ -82,8 +82,7 @@ export function Register() {
           //   email: formData.email,
           //   password: formData.password,
           // };
-          const successdata = await registerUser(formData) // use your API function 
-          console.log('success', successdata);         
+          await registerUser(formData) // use your API function 
           setSuccess('User registered successfully!');
           setFormData({ first_name: '', last_name: '', email: '', password: '' });
           setErrors({});
