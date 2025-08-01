@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-
+console.log('api called');
 export async function GET() {
   
   const cookieStore = cookies(); // await required

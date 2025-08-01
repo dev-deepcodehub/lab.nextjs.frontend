@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchUser = async () => {
+    console.log('⚡ fetchUser is being called');
     setLoading(true);
     try {
       const res = await fetch('/api/currentuser', { credentials: 'include' });
