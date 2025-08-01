@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 
 export async function GET() {
   
-  const cookieStore = await cookies(); // ✅ await required
+  const cookieStore = cookies(); // ✅ await required
   const cookieHeader = cookieStore.toString();
   // const cookieHeader = cookies().toString();
 
@@ -11,7 +11,6 @@ export async function GET() {
     headers: {
       Cookie: cookieHeader,
     },
-    credentials: 'include',
     cache: 'no-store',
   });
 
