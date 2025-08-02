@@ -70,8 +70,8 @@ export function Login() {
 
           const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
-          const data = await refreshUser();
-          console.log('refreshUser data', data);
+          // const data = await refreshUser();
+          // console.log('refreshUser data', data);
 
           // setTimeout(async () => {
           //   await refreshUser();
