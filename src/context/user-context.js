@@ -10,8 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-   useEffect(() => {
-    const fetchUser = async () => {
+  //  useEffect(() => {
+    const refreshUser = async () => {
       try {
         const data = await getCurrentUser();
         if (data.CurrentUserData) {
@@ -27,7 +27,8 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-    fetchUser();
+  useEffect(() => {
+    refreshUser();
   }, []);
 
   const logout = () => {
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, logout }}>
+    <AuthContext.Provider value={{ user, setUser, loading, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );
