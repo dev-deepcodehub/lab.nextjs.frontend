@@ -15,11 +15,11 @@ import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { paths } from '@/paths';
 import { loginUser } from '@/lib/authapi/api'; 
-import { useAuth } from '@/context/user-context'
+// import { useAuth } from '@/context/user-context'
 
 export function Login() {
 
-  const { refreshUser } = useAuth();
+  // const { refreshUser } = useAuth();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false); //show hide the password
   // const [isPending, setIsPending] = useState(false);
@@ -70,7 +70,11 @@ export function Login() {
 
           const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
-          await refreshUser();
+          // await refreshUser();
+          // setTimeout(async () => {
+          //   await refreshUser();
+          //   router.push('/dashboard');
+          // }, 100); // Delay just a bit to let the browser attach session cookie
           router.push('/dashboard');
 
         } 

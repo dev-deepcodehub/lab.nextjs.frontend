@@ -1,39 +1,45 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getCurrentUser } from '@/lib/authapi/api';
+import { useRouter } from 'next/navigation';
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-  const fetchUser = async () => {
-    setLoading(true);
-    try {
-      console.log('⚡ fetchUser is being called');
-      // const res = await fetch('/api/currentuser', { credentials: 'include' });
-      const res = await fetch('/api/currentuser', {
-      method: 'GET',
-      credentials: 'include', // 👈 MAKE SURE THIS EXISTS
-    });
-      const data = await res.json();
-      console.log('user data fetched initially', data)
-      setUser(data.user || null);
-    } catch (error) {
-      setUser(null);
-      console.log('error fetching user details', error)
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
+   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await getCurrentUser();
+        if (data.CurrentUserData) {
+          setUser(data.CurrentUserData);
+        } else {
+          setUser(null);
+        }
+        console.log('dataaaaa', data);
+      } catch (error) {
+          console.log('error', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchUser();
   }, []);
 
+  const logout = () => {
+    setUser(null);
+    router.push('/login');
+  };
+    
+  console.log('usersetornot', user);
+
 
   return (
-    <AuthContext.Provider value={{ user, loading, refreshUser: fetchUser }}>
+    <AuthContext.Provider value={{ user, setUser, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );
