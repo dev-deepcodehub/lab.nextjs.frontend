@@ -14,12 +14,12 @@ export const AuthProvider = ({ children }) => {
     const refreshUser = async () => {
       try {
         const data = await getCurrentUser();
-        if (data.CurrentUserData) {
-          setUser(data.CurrentUserData);
+        if (data.user) {
+          setUser(data.user);
         } else {
           setUser(null);
         }
-        console.log('dataaaaa', data);
+        console.log('session data:', data);
       } catch (error) {
           console.log('error', error);
         setUser(null);
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     router.push('/login');
   };
     
-  console.log('usersetornot', user);
+  console.log('on page load data:', user);
 
 
   return (
