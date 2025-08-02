@@ -70,7 +70,9 @@ export function Login() {
 
           const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
-          await refreshUser();
+          const data = await refreshUser();
+          console.log('refreshUser data', data);
+
           // setTimeout(async () => {
           //   await refreshUser();
           //   router.push('/dashboard');
