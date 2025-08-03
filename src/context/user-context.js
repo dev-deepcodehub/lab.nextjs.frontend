@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
           console.log('Session check error:', error);
           setUser(null);
         } finally {
-          setSessionChecked(true);
+          // setSessionChecked(true);
           setLoading(false);
         }
       };
