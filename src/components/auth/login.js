@@ -14,8 +14,9 @@ import Typography from '@mui/material/Typography';
 import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { paths } from '@/paths';
-import { loginUser } from '@/lib/authapi/api'; 
+import { loginUser, getSessionStatus } from '@/lib/authapi/api'; 
 // import { useAuth } from '@/context/user-context'
+
 
 export function Login() {
 
@@ -70,6 +71,9 @@ export function Login() {
 
           const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
+          const sessionc = await getSessionStatus();
+          console.log('sessionfunction', sessionc);
+
           // const data = await refreshUser();
           // console.log('refreshUser data', data);
 
