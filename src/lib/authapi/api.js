@@ -30,6 +30,12 @@ export const getCurrentUser = async () => {
   return response.data;
 };
 
+// Add session status function
+export const getSessionStatus = async () => {
+  const response = await api.get('/session-status');
+  return response.data;
+};
+
 
 // Export the Axios instance too (optional, if needed elsewhere)
 export default api;
