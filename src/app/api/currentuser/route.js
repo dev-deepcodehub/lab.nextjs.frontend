@@ -30,11 +30,12 @@ export async function GET(request) {
   try {
     const cookie = request.headers.get('cookie') || '';
 
-    const response = await axios.get('https://dev.digilabpro.com/currentuser', {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`, {
       headers: { cookie },
       withCredentials: true,
     });
 
+    console.log('response after api call', response);
     // axios response already has parsed data
     return new Response(JSON.stringify(response.data), {
       status: 200,
