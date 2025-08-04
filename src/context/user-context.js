@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-// import { getCurrentUser } from '@/lib/authapi/userwithsession';
-import { getCurrentUser } from '@/lib/authapi/api';
+import { getCurrentUser } from '@/lib/authapi/userwithsession';
+// import { getCurrentUser } from '@/lib/authapi/api';
 import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();

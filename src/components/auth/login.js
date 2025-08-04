@@ -14,8 +14,8 @@ import Typography from '@mui/material/Typography';
 import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { paths } from '@/paths';
-import { loginUser, getCurrentUser } from '@/lib/authapi/api'; 
-// import { getCurrentUser } from '@/lib/authapi/userwithsession'; 
+import { loginUser } from '@/lib/authapi/api'; 
+import { getCurrentUser } from '@/lib/authapi/userwithsession'; 
 // import { useAuth } from '@/context/user-context'
 
 
