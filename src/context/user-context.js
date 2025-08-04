@@ -1,7 +1,7 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-// import { getCurrentUser } from '@/lib/authapi/api';
-import { getCurrentUser } from '@/app/api/currentuser/userapi';
+import { getCurrentUser } from '@/lib/authapi/userwithsession';
+
 import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       try {
         // First check session status
         const sessionData = await getCurrentUser();
-        console.log('getCurrentUser - Session status:', sessionData);
+        console.log('getCurrentUser - next api and Session status:', sessionData);
 
         if (sessionData.authenticated) {
           // If session is active, get user data

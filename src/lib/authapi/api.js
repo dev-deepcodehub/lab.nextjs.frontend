@@ -25,18 +25,11 @@ export const logOut = async () => {
   return response.data;
 };
 
-// Get current user from session
-export const getCurrentUser = async () => {
-  const response = await api.get('/currentuser');
-  return response.data;
-};
-
-// Add session status function
-export const getSessionStatus = async () => {
-  const response = await api.get('/session-status');
-  return response.data;
-};
-
+// // Get current user from session
+// export const getCurrentUser = async () => {
+//   const response = await api.get('/currentuser');
+//   return response.data;
+// };
 
 // Export the Axios instance too (optional, if needed elsewhere)
 export default api;
