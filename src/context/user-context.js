@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     try {
         // First check session status
         const sessionData = await getCurrentUser();
+        console.log('sessionfunctioncall:', sessionData);
 
         if (sessionData.status === 200 && sessionData.message === 'authenticated') {
           // If user is authenticated, then set user data

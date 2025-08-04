@@ -70,8 +70,9 @@ export function Login() {
             password: formData.password,
           };
 
-          await loginUser(formfieldsdata);
-          // console.log('logindata', res);
+          res = await loginUser(formfieldsdata);
+          console.log('logindata', res);
+          // if (res)
           await getCurrentUser();
           // console.log('getcurrentuser function run after login', sessionfun);
           // router.push('/dashboard');
