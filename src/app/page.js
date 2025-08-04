@@ -7,13 +7,14 @@ import { useAuth } from '@/context/user-context'
 import { logOut } from '@/lib/authapi/api';
 
 export default function Page() {
-    const { user } = useAuth();
+    const { user, setUser } = useAuth();
     const router = useRouter();
     // console.log('user data on home page:', user);
 
     const handleLogout = async () => {
       try {
         await logOut();
+        setUser(null);
         router.push('/login');
       } catch (error) {
         console.log('Logout failed:', error);
