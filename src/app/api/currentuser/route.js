@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export async function GET(request) {
+  try {
     // Forward cookies from client request to backend for session auth
     const cookie = request.headers.get('cookie') || '';
 
@@ -12,9 +13,13 @@ export async function GET(request) {
       withCredentials: true,
     });
 
-    if (!response.ok) return res.status(401).json();
+    console.log('respone after api call', response);
 
     const user = await response.json();
-    return res.status(200).json(user);
+    console.log('respone user data', user);
+
+    } catch (error) {
+      console.error('Error fetching current user data:', error);
+    }
 
 }
