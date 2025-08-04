@@ -15,7 +15,7 @@ import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { paths } from '@/paths';
 import { loginUser } from '@/lib/authapi/api'; 
-import { getCurrentUser } from '@/app/api/userapi'
+import { getCurrentUser } from '@/lib/authapi/userwithsession'; 
 // import { useAuth } from '@/context/user-context'
 
 
