@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
         if (sessionData.status === 200 && sessionData.message === 'Authorized') {
           // If user is authenticated, then set user data
           setUser(sessionData.user);
+          console.log('✅ User state updated:', user);
+          router.push('/dashboard');
         } else {
           setUser(null);
         }
@@ -37,15 +39,15 @@ export const AuthProvider = ({ children }) => {
     refreshUser();
   }, []);
 
-  // ✅ Detect when user state is updated
-  useEffect(() => {
-    if (user) {
-      console.log('✅ User state updated:', user);
+  // // ✅ Detect when user state is updated
+  // useEffect(() => {
+  //   if (user) {
+  //     console.log('✅ User state updated:', user);
 
-      // Optional: only push if not already on dashboard
-      router.push('/dashboard');
-    }
-  }, [user]);
+  //     // Optional: only push if not already on dashboard
+  //     router.push('/dashboard');
+  //   }
+  // }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, setUser, loading, refreshUser }}>
