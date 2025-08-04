@@ -16,38 +16,33 @@ export const AuthProvider = ({ children }) => {
     try {
         // First check session status
         const sessionData = await getCurrentUser();
-        console.log('🔄 Session data:', sessionData);
 
         if (sessionData.status === 200 && sessionData.message === 'Authorized') {
           // If user is authenticated, then set user data
           setUser(sessionData.user);
-          console.log('✅ User state updated:', user);
           router.push('/dashboard');
         } else {
           setUser(null);
         }
       } catch (error) {
-        console.error('❌ Session check error:', error);
+        console.error('❌ Server error, please try again:', error);
         setUser(null);
       } finally {
         setLoading(false);
       }
-      console.log('userdata:', user);
   };
 
   useEffect(() => {
     refreshUser();
   }, []);
 
-  // // ✅ Detect when user state is updated
-  // useEffect(() => {
-  //   if (user) {
-  //     console.log('✅ User state updated:', user);
-
-  //     // Optional: only push if not already on dashboard
-  //     router.push('/dashboard');
-  //   }
-  // }, [user]);
+  // Detect when user state is updated
+  useEffect(() => {
+    if (user) {
+      // Optional: only push if not already on dashboard
+      router.push('/dashboard');
+    }
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, setUser, loading, refreshUser }}>

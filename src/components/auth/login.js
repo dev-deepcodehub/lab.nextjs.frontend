@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import RouterLink from 'next/link';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -21,13 +21,20 @@ import { useAuth } from '@/context/user-context'
 
 export function Login() {
 
-  const { refreshUser } = useAuth();
-  // const router = useRouter();
+  const { refreshUser, user } = useAuth();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false); //show hide the password
   // const [isPending, setIsPending] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' }); 
   const [errors, setErrors] = useState({ email: '', password: '' }); //display errors
   const [invaliddetails, setinvaliDetails] = useState('');
+
+  //redirect to dashboard if user is logged in
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user]);
 
   function handleChange(e){
     //change input value during typing

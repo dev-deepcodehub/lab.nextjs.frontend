@@ -9,7 +9,7 @@ import { logOut } from '@/lib/authapi/api';
 export default function Page() {
     const { user } = useAuth();
     const router = useRouter();
-    console.log('user data on home page:', user);
+    // console.log('user data on home page:', user);
 
     const handleLogout = async () => {
       try {
