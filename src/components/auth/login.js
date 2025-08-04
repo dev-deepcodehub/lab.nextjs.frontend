@@ -77,7 +77,7 @@ export function Login() {
           // console.log('getcurrentuser function run after login', sessionfun);
           // router.push('/dashboard');
 
-        } 
+        }
     catch (error) 
         {
           const response = error?.response;
