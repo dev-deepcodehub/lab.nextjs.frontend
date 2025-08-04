@@ -70,7 +70,7 @@ export function Login() {
             password: formData.password,
           };
 
-          res = await loginUser(formfieldsdata);
+          const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
           // if (res)
           await getCurrentUser();
