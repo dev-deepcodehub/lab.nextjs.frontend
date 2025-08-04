@@ -15,13 +15,13 @@ import { EyeIcon } from '@phosphor-icons/react/dist/ssr/Eye';
 import { EyeSlashIcon } from '@phosphor-icons/react/dist/ssr/EyeSlash';
 import { paths } from '@/paths';
 import { loginUser } from '@/lib/authapi/api'; 
-import { getCurrentUser } from '@/lib/authapi/userwithsession'; 
-// import { useAuth } from '@/context/user-context'
+// import { getCurrentUser } from '@/lib/authapi/userwithsession'; 
+import { useAuth } from '@/context/user-context'
 
 
 export function Login() {
 
-  // const { refreshUser } = useAuth();
+  const { refreshUser } = useAuth();
   // const router = useRouter();
   const [showPassword, setShowPassword] = useState(false); //show hide the password
   // const [isPending, setIsPending] = useState(false);
@@ -70,10 +70,11 @@ export function Login() {
             password: formData.password,
           };
 
-          const res = await loginUser(formfieldsdata);
-          console.log('logindata', res);
+          await loginUser(formfieldsdata);
+          await refreshUser();
+          // console.log('logindata', res);
           // if (res)
-          await getCurrentUser();
+          // await getCurrentUser();
           // console.log('getcurrentuser function run after login', sessionfun);
           // router.push('/dashboard');
 
