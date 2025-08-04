@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import RouterLink from 'next/link';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -22,7 +22,7 @@ import { getCurrentUser } from '@/lib/authapi/userwithsession';
 export function Login() {
 
   // const { refreshUser } = useAuth();
-  const router = useRouter();
+  // const router = useRouter();
   const [showPassword, setShowPassword] = useState(false); //show hide the password
   // const [isPending, setIsPending] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' }); 
@@ -71,18 +71,10 @@ export function Login() {
           };
 
           const res = await loginUser(formfieldsdata);
-          console.log('logindata', res);
-          const sessionfun = await getCurrentUser();
-          console.log('getcurrentuser function run after login', sessionfun);
-
-          // const data = await refreshUser();
-          // console.log('refreshUser data', data);
-
-          // setTimeout(async () => {
-          //   await refreshUser();
-          //   router.push('/dashboard');
-          // }, 100); // Delay just a bit to let the browser attach session cookie
-          router.push('/dashboard');
+          // console.log('logindata', res);
+          await getCurrentUser();
+          // console.log('getcurrentuser function run after login', sessionfun);
+          // router.push('/dashboard');
 
         } 
     catch (error) 
