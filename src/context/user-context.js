@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-
+  
   //  useEffect(() => {
   const refreshUser = async () => {
     try {
@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
       } finally {
         setLoading(false);
       }
+      console.log('userdata:', user);
   };
 
   useEffect(() => {
