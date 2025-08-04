@@ -29,11 +29,13 @@ import axios from 'axios';
 export async function GET(request) {
   try {
     const cookie = request.headers.get('cookie') || '';
+    console.log('cokies', cookie);
 
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`, {
-      headers: { cookie },
-      withCredentials: true,
-    });
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/currentuser`)
+    // , {
+      // headers: { cookie },
+      // withCredentials: true,
+    // });
 
     console.log('response after api call', response);
     // axios response already has parsed data
