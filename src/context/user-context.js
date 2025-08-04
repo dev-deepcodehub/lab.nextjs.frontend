@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         if (sessionData.status === 200 && sessionData.message === 'authenticated') {
           // If user is authenticated, then set user data
           setUser(sessionData.user);
+          console.log('userdata if user set:', user);
           router.push('/dashboard');
         } else {
           setUser(null);
