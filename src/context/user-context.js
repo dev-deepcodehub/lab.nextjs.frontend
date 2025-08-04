@@ -15,11 +15,12 @@ export const AuthProvider = ({ children }) => {
       try {
         // First check session status
         const sessionData = await getSessionStatus();
-        console.log('Session status:', sessionData);
+        console.log('getsessionstatus - Session status:', sessionData);
 
         if (sessionData.authenticated) {
           // If session is active, get user data
           const userData = await getCurrentUser();
+          console.log('getcurrentuser - get user data is authenticated:', sessionData);
           setUser(userData.CurrentUserData || userData.user);
         } else {
           setUser(null);

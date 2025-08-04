@@ -71,8 +71,8 @@ export function Login() {
 
           const res = await loginUser(formfieldsdata);
           console.log('logindata', res);
-          const sessionc = await getSessionStatus();
-          console.log('sessionfunction', sessionc);
+          const sessionfun = await getSessionStatus();
+          console.log('session function run after login', sessionfun);
 
           // const data = await refreshUser();
           // console.log('refreshUser data', data);
