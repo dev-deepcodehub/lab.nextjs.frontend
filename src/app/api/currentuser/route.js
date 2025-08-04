@@ -1,32 +1,17 @@
-  import { cookies } from 'next/headers';
-  console.log('api called');
-  export async function GET() {
+import axios from 'axios';
 
-    const cookieStore = await cookies(); // await required
+// Axios instance
+const api = axios.create({
+  // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: 'https://dev.digilabpro.com',
+  withCredentials: true,
+}); 
 
-    // const cookieHeader = cookieStore.getAll()
-    //   .map(c => `${c.name}=${c.value}`)
-    //   .join('; ');
+// Get current user from session
+export const getCurrentUser = async () => {
+  const response = await api.get('/currentuser');
+  return response.data;
+};
 
-    const cookieHeader = cookieStore.getAll()
-    .map(c => `${c.name}=${c.value}`)
-    .join('; ');
-    // const cookieHeader = cookies().toString();
-    console.log('cookieHeader:', cookieHeader); // Debug
-    
-    const res = await fetch('https://dev.digilabpro.com/currentuser', {
-      method: 'GET',
-      headers: {
-        Cookie: cookieHeader,
-      },
-      cache: 'no-store',
-    });
-
-    if (!res.ok) {
-      return new Response(JSON.stringify({ user: null }));
-    }
-
-    const data = await res.json();
-    console.log('data', data);
-    return new Response(JSON.stringify({ user: data.CurrentUserData }));
-  }
+// Export the Axios instance too (optional, if needed elsewhere)
+export default api;

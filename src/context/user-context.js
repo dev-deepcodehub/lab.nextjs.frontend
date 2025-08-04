@@ -1,6 +1,7 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { getCurrentUser, getSessionStatus } from '@/lib/authapi/api';
+// import { getCurrentUser } from '@/lib/authapi/api';
+import { getCurrentUser } from '@/app/api/currentuser/route';
 import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
@@ -14,8 +15,8 @@ export const AuthProvider = ({ children }) => {
     const refreshUser = async () => {
       try {
         // First check session status
-        const sessionData = await getSessionStatus();
-        console.log('getsessionstatus - Session status:', sessionData);
+        const sessionData = await getCurrentUser();
+        console.log('getCurrentUser - Session status:', sessionData);
 
         if (sessionData.authenticated) {
           // If session is active, get user data
