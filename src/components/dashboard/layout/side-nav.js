@@ -17,7 +17,7 @@ export function SideNav() {
   const pathname = usePathname();
 
   return (
-    <Box className="Sidebarmaindiv md:hidden xs:flex">
+    <Box className="Sidebarmaindiv md:flex hidden">
       <Stack spacing={2} sx={{ p: 3 }}>
         <Typography variant="div" sx={{ mb: 3 }}>
           <h4 style={{ color: 'white' }}>DCH Dashboard</h4>

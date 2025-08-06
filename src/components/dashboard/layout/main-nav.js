@@ -40,14 +40,16 @@ export function MainNav() {
           sx={{ alignItems: 'center', justifyContent: 'space-between', minHeight: '64px', px: 2 }}
         >
           <Stack sx={{ alignItems: 'center' }} direction="row" spacing={2}>
-            <IconButton
+            <span className='md:hidden inline-flex'>
+            <IconButton 
               onClick={() => {
                 setOpenNav(true);
               }}
-              sx={{ display: { lg: 'none' } }}
+              // sx={{ display: { md: 'none' } }}
             >
               <ListIcon />
             </IconButton>
+            </span>
             <Tooltip title="Search">
               <IconButton>
                 <MagnifyingGlassIcon />

@@ -22,7 +22,7 @@ export default function Layout({ children }) {
           body: {
             '--MainNav-height': '56px',
             '--MainNav-zIndex': 1000,
-            '--SideNav-width': '280px',
+            '--SideNav-width': '260px',
             '--SideNav-zIndex': 1100,
             '--MobileNav-width': '320px',
             '--MobileNav-zIndex': 1100,
@@ -40,18 +40,18 @@ export default function Layout({ children }) {
         }}
       >
         <SideNav />
-        <Box
+        <Box className='pl-0 md:pl-[260px]'
           sx={{
             display: 'flex',
             flex: '1 1 auto',
             flexDirection: 'column',
-            pl: { lg: 'var(--SideNav-width)' },
+            // pl: { lg: 'var(--SideNav-width)' },
           }}
         >
           <MainNav />
 
           <main>
-            <Container maxWidth="xl" sx={{ py: '64px' }}>
+            <Container maxWidth="" sx={{ py: '64px' }}>
               {/* <AuthProvider>{children}</AuthProvider> */}
               {children}
             </Container>
