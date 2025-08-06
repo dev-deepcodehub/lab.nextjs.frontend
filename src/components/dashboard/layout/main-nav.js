@@ -83,12 +83,8 @@ export function MainNav() {
         onClose={userPopover.handleClose} 
         open={userPopover.open} 
       />
-      <MobileNav
-        onClose={() => {
-          setOpenNav(false);
-        }}
-        open={openNav}
-      />
+      
+      <MobileNav onClose={() => { setOpenNav(false); }} open={openNav} />
     </>
   );
 }

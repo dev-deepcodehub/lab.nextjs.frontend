@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   const { user } = useAuth();
   const router = useRouter();
   
-  // if (!user) return router.push('/login');  
+  if (!user) return router.push('/login');  
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
             '--MainNav-zIndex': 1000,
             '--SideNav-width': '260px',
             '--SideNav-zIndex': 1100,
-            '--MobileNav-width': '320px',
+            '--MobileNav-width': '260px',
             '--MobileNav-zIndex': 1100,
           },
         }}
@@ -52,7 +52,7 @@ export default function Layout({ children }) {
 
           <main>
             <Container maxWidth="" sx={{ py: '64px' }}>
-              {/* <AuthProvider>{children}</AuthProvider> */}
+              <AuthProvider>{children}</AuthProvider>
               {children}
             </Container>
           </main>

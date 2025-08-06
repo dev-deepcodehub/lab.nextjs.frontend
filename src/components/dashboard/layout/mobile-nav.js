@@ -12,12 +12,42 @@ import { ArrowSquareUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowSqua
 import { navIcons } from './nav-icons'; //icons
 import { navItems } from './config'; //menus
 import { SignOut } from '@phosphor-icons/react/dist/ssr/SignOut';
+import Drawer from '@mui/material/Drawer';
+// import { CaretUpDownIcon } from '@phosphor-icons/react/dist/ssr/CaretUpDown';
 
-export function SideNav() {
+
+export function MobileNav({ open, onClose }) {
   const pathname = usePathname();
 
   return (
-    <Box className="Sidebarmaindiv md:flex hidden">
+    <Drawer
+      PaperProps={{
+        sx: {
+          '--MobileNav-background': 'var(--mui-palette-neutral-950)',
+          '--MobileNav-color': 'var(--mui-palette-common-white)',
+          '--NavItem-color': 'var(--mui-palette-neutral-300)',
+          '--NavItem-hover-background': 'rgba(255, 255, 255, 0.04)',
+          '--NavItem-active-background': 'var(--mui-palette-primary-main)',
+          '--NavItem-active-color': 'var(--mui-palette-primary-contrastText)',
+          '--NavItem-disabled-color': 'var(--mui-palette-neutral-500)',
+          '--NavItem-icon-color': 'var(--mui-palette-neutral-400)',
+          '--NavItem-icon-active-color': 'var(--mui-palette-primary-contrastText)',
+          '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
+          bgcolor: 'var(--MobileNav-background)',
+          color: 'var(--MobileNav-color)',
+          display: 'flex',
+          flexDirection: 'column',
+          maxWidth: '100%',
+          scrollbarWidth: 'none',
+          width: 'var(--MobileNav-width)',
+          zIndex: 'var(--MobileNav-zIndex)',
+          '&::-webkit-scrollbar': { display: 'none' },
+        },
+      }}
+      onClose={onClose}
+      open={open}
+    >
+    <Box className="Sidebarmaindiv">
       <Stack spacing={2} sx={{ p: 3 }}>
         <Typography variant="div" sx={{ mb: 3 }}>
           <h4 style={{ color: 'white' }}>DCH Dashboard</h4>
@@ -33,7 +63,8 @@ export function SideNav() {
           const [hovered, setHovered] = useState(false);
 
           return (
-            <Box 
+            <Box
+              onClick={onClose}
               component={RouterLink} 
               key={item.key} 
               href={item.href}
@@ -91,5 +122,6 @@ export function SideNav() {
         </Button>
       </Stack>
     </Box>
+    </Drawer>
   );
 }
