@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import RouterLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
@@ -9,54 +9,54 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ArrowSquareUpRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareUpRight';
-
-import { paths } from '@/paths';
-import { isNavItemActive } from '@/lib/is-nav-item-active';
-import { navItems } from './config';
-import { navIcons } from './nav-icons';
+import { navIcons } from './nav-icons'; //icons
+import { navItems } from './config'; //menus
+import { SignOut } from '@phosphor-icons/react/dist/ssr/SignOut';
 
 export function SideNav() {
   const pathname = usePathname();
 
   return (
-    <Box
-      className="Sidebarmaindiv"
-      sx={{
-        '--SideNav-background': 'var(--mui-palette-neutral-950)',
-        '--SideNav-color': 'var(--mui-palette-common-white)',
-        '--NavItem-color': 'var(--mui-palette-neutral-300)',
-        '--NavItem-hover-background': 'rgba(255, 255, 255, 0.04)',
-        '--NavItem-active-background': 'var(--mui-palette-primary-main)',
-        '--NavItem-active-color': 'var(--mui-palette-primary-contrastText)',
-        '--NavItem-disabled-color': 'var(--mui-palette-neutral-500)',
-        '--NavItem-icon-color': 'var(--mui-palette-neutral-400)',
-        '--NavItem-icon-active-color': 'var(--mui-palette-primary-contrastText)',
-        '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
-        bgcolor: 'var(--SideNav-background)',
-        color: 'var(--SideNav-color)',
-        display: { xs: 'none', lg: 'flex' },
-        flexDirection: 'column',
-        height: '100%',
-        left: 0,
-        maxWidth: '100%',
-        position: 'fixed',
-        scrollbarWidth: 'none',
-        top: 0,
-        width: 'var(--SideNav-width)',
-        zIndex: 'var(--SideNav-zIndex)',
-        '&::-webkit-scrollbar': { display: 'none' },
-      }}
-    >
+    <Box className="Sidebarmaindiv md:hidden xs:flex">
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Box component={RouterLink} href={paths.home} sx={{ display: 'inline-flex' }}>
+        <Typography variant="div" sx={{ mb: 3 }}>
           <h4 style={{ color: 'white' }}>DCH Dashboard</h4>
-        </Box>
+        </Typography>
       </Stack>
 
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
 
-      <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
-        {renderNavItems({ pathname, items: navItems })}
+      <Box component="nav" sx={{ flex: 1 }}>
+        {navItems.map((item) => {
+          const Icon = navIcons[item.icon];
+          const isActive = pathname === item.href;
+          const [hovered, setHovered] = useState(false);
+
+          return (
+            <Box 
+              component={RouterLink} 
+              key={item.key} 
+              href={item.href}
+              className={isActive ? 'active' : ''} 
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              {Icon ? (
+                <Icon
+                  weight={isActive || hovered ? 'fill' : undefined} 
+                />
+              ) : null } 
+              <Typography component="span" className='menutitle'> {item.title}</Typography>
+            </Box>
+          )
+        })}
+
+        {/* Logout button  */}
+        <Box className='logoutbtn'>
+            <SignOut weight='fill'/>
+            <Typography component="span" className='logout-title'>Log-Out</Typography>
+        </Box>
+
       </Box>
 
       <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
@@ -91,79 +91,5 @@ export function SideNav() {
         </Button>
       </Stack>
     </Box>
-  );
-}
-
-function renderNavItems({ items = [], pathname }) {
-  const children = items.reduce((acc, curr) => {
-    const { key, ...item } = curr;
-    acc.push(<NavItem key={key} pathname={pathname} {...item} />);
-    return acc;
-  }, []);
-
-  return (
-    <Stack component="ul" spacing={1} sx={{ listStyle: 'none', m: 0, p: 0 }}>
-      {children}
-    </Stack>
-  );
-}
-
-function NavItem({ disabled, external, href, icon, matcher, pathname, title }) {
-  const active = isNavItemActive({ disabled, external, href, matcher, pathname });
-  const Icon = icon ? navIcons[icon] : null;
-
-  return (
-    <li>
-      <Box
-        {...(href
-          ? {
-              component: external ? 'a' : RouterLink,
-              href,
-              target: external ? '_blank' : undefined,
-              rel: external ? 'noreferrer' : undefined,
-            }
-          : { role: 'button' })}
-        sx={{
-          alignItems: 'center',
-          borderRadius: 1,
-          color: 'var(--NavItem-color)',
-          cursor: 'pointer',
-          display: 'flex',
-          flex: '0 0 auto',
-          gap: 1,
-          p: '6px 16px',
-          position: 'relative',
-          textDecoration: 'none',
-          whiteSpace: 'nowrap',
-          ...(disabled && {
-            bgcolor: 'var(--NavItem-disabled-background)',
-            color: 'var(--NavItem-disabled-color)',
-            cursor: 'not-allowed',
-          }),
-          ...(active && {
-            bgcolor: 'var(--NavItem-active-background)',
-            color: 'var(--NavItem-active-color)',
-          }),
-        }}
-      >
-        <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto' }}>
-          {Icon ? (
-            <Icon
-              fill={active ? 'var(--NavItem-icon-active-color)' : 'var(--NavItem-icon-color)'}
-              fontSize="var(--icon-fontSize-md)"
-              weight={active ? 'fill' : undefined}
-            />
-          ) : null}
-        </Box>
-        <Box sx={{ flex: '1 1 auto' }}>
-          <Typography
-            component="span"
-            sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px' }}
-          >
-            {title}
-          </Typography>
-        </Box>
-      </Box>
-    </li>
   );
 }

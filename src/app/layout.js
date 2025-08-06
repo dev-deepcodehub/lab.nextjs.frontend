@@ -19,7 +19,9 @@ export default function Layout({ children }) {
         <LocalizationProvider>
           <ThemeProvider>
               <AuthProvider>
-                <AppContent>{children}</AppContent>
+                {/* <AppContent> */}
+                  {children}
+                {/* </AppContent> */}
               </AuthProvider>
             </ThemeProvider>
         </LocalizationProvider>

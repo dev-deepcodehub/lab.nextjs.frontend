@@ -13,8 +13,8 @@ export default function Layout({ children }) {
   const { user } = useAuth();
   const router = useRouter();
   
-  if (!user) return router.push('/login');
-  
+  // if (!user) return router.push('/login');  
+
   return (
     <>
       <GlobalStyles 

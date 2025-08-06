@@ -1,3 +1,18 @@
+:root{
+  --SideNav-background: var(--mui-palette-neutral-950);
+  --SideNav-color: var(--mui-palette-common-white);
+  --NavItem-color: var(--mui-palette-neutral-300);
+  --NavItem-hover-background: rgba(255, 255, 255, 0.04);
+  --NavItem-active-background: var(--mui-palette-primary-main);
+  --NavItem-active-color: var(--mui-palette-primary-contrastText);
+  --NavItem-disabled-color: var(--mui-palette-neutral-500);
+  --NavItem-icon-color: var(--mui-palette-neutral-400);
+  --NavItem-icon-active-color: var(--mui-palette-primary-contrastText);
+  --NavItem-icon-disabled-color: var(--mui-palette-neutral-600);
+}
+        
+        
+        
 /* initally website loader */
 .typing_app_name {
   position: fixed;
@@ -30,3 +45,141 @@
     font-size: 30px;
   }
 }
+
+//Dashbaord side menu for Desktop version
+.nav-main-ul{
+  display: flex;
+  flex-direction: column;
+  gap: var(--mui-spacing);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & .sidebar_menu_items{
+    align-items: center;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    gap: 6px;
+    padding: 6px 16px;
+    position: relative;
+    text-decoration: none !important;
+    white-space: nowrap;
+    background-color:var(--NavItem-disabled-background);
+    color: var(--NavItem-color);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 28px;
+
+    &:hover{
+      background-color: var(--NavItem-active-background);
+      color: var(--NavItem-active-color);
+    }
+    &.active{
+      background-color: var(--NavItem-active-background);
+      color: var(--NavItem-active-color);
+    }
+
+    & .menu_icon{
+      display: flex;
+      font-size: 18px;
+      align-items: center;
+    }
+  }
+}
+
+     
+    
+// Desktop side nav menus 
+.Sidebarmaindiv{
+  background-color: var(--SideNav-background);
+  color: var(--SideNav-color);
+  flex-direction: column;
+  height: 100%;
+  left:0;
+  top:0;
+  max-width: 100%;
+  position: fixed;
+  scrollbar-width: none;
+  width: var(--SideNav-width);
+  z-index: var(--SideNav-zIndex);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & nav{
+    & .logoutbtn{
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 10px;
+      padding: 6px 16px;
+      margin: 10px;
+      position: relative;
+      text-decoration: none;
+      white-space: nowrap;
+      color: rgb(211, 0, 0);
+
+      & svg{
+        fill: rgb(211, 0, 0);
+        font-size: var(--icon-fontSize-md);
+      }
+      
+      & .logout-title{
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 28px;
+      }
+    }
+
+    & a{
+      align-items: center;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      flex: 0 0 auto;
+      gap: 10px;
+      padding: 6px 16px;
+      margin: 10px;
+      position: relative;
+      text-decoration: none;
+      white-space: nowrap;
+      color: var(--NavItem-color);
+
+      & svg{
+        fill: var(--NavItem-icon-color);
+        font-size: var(--icon-fontSize-md);
+      }
+
+      & .menutitle{
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 28px;
+      }
+
+      &.active{
+        background-color: var(--NavItem-active-background);
+        color: var(--NavItem-active-color);
+
+        & svg{
+          fill: var(--NavItem-icon-active-color);
+        }
+      }
+
+      &:hover{
+        background-color: var(--NavItem-active-background);
+        color: var(--NavItem-active-color);
+
+        & svg{
+          fill: var(--NavItem-icon-active-color);
+        }
+      }
+    }
+
+  }
+}
+
+
